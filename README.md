@@ -1,4 +1,4 @@
-# Soft Gothic Tattoo — site
+# Soft Gothic Tattoo - portfolio site
 
 
 
