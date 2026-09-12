@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://softgothictattoo.co.uk/sitemap.xml
