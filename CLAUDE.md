@@ -61,14 +61,20 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
 
 ## Current state / known work
 
-- The gallery at `tattoos/index.html` is still wired to
-  `img/tattoos/placeholder-*.jpg` and `*.webp` stubs with "Replace with
-  description" alt text. The ~60 real photos in `img/tattoos/` are not yet
-  used anywhere. Wiring them up, with real captions and alt text, is the
-  next obvious job.
+- `tattoos/index.html` is one flat gallery of 54 photos, in alphabetical
+  order by filename, with no Custom/Flash/Healed split and no captions.
+  The order is arbitrary and safe to rearrange; the alt text was written
+  from the photographs and should be corrected wherever it misreads a
+  piece.
+- Three files in `img/tattoos/` are deliberately not on any page:
+  - `me.jpg` is a portrait of Luke, not a tattoo. It belongs on `about/`
+    if anywhere.
+  - `bread.jpg` is a group photo in which four people's faces are clearly
+    identifiable. Not published pending their say-so.
+  - `pin.jpg` is the same photograph as `bicep_heart.webp`, which is the
+    copy the site uses.
 - Photos in `img/tattoos/` are optimised automatically once they land on
   `main` — see "Images" above. Nothing needs doing by hand.
-- The "Healed" section of the portfolio page is a heading with no photos yet.
 
 ## Working agreement
 
