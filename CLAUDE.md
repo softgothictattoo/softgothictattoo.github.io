@@ -89,13 +89,15 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   tile, set on `html` over the `--parchment` colour. The tile is seamless
   and its light areas are exactly `#e5e4c6`, so the colour underneath
   matches and nothing shifts if the image fails to load.
-  Drawn at 26rem. It is a kaleidoscope rather than a true repeating
-  wallpaper, so past roughly 30rem its mirror axes read as irregular
-  blobs rather than a pattern. 30rem was the first setting tried and was
-  rejected for exactly that; 26 is about the ceiling.
-- The hero artwork is `img/eye-flash-light.png`: the eye design in cream
+  Drawn at 55rem, from an 1800px tile so it stays sharp on a 2x screen.
+  The awkward range is the middle: around 28-35rem the motifs are too
+  big to read as texture and too small to read as birds, so they look
+  like blobs. Below and above that it reads as a pattern.
+- The hero artwork is `img/eye-flash-light.png`: the eye design in white
   ink on transparency, so it sits straight on the dark hero with no
-  mount. `.hero-art img` therefore sets `background: none; border: 0`.
+  mount. Luke supplied the same design in three inks, cream, white and
+  black; white is the one on the site, black (`img/IMG_7660.PNG`) is
+  still unused. `.hero-art img` therefore sets `background: none; border: 0`.
   It is a 64-colour palette PNG, which for two-tone artwork is a tenth
   the size of truecolour with no visible loss, 12.4 MB down to 94 KB.
   `img/eye-flash.jpg`, the black-on-white version it replaced, is now

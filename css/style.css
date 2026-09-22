@@ -47,7 +47,7 @@
    repeating wallpaper, so past roughly 24rem its mirror axes read as
    irregular blobs with flattened bands between them rather than a pattern.
    This is about as large as it goes while the geometry still resolves. */
-html { background: var(--parchment) url("../img/bg-pattern.jpg") top center / 26rem repeat; scroll-behavior: smooth; }
+html { background: var(--parchment) url("../img/bg-pattern.jpg") top center / 55rem repeat; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
