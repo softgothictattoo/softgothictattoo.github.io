@@ -119,6 +119,7 @@ strong { font-weight: 600; }
 .rule { display: flex; justify-content: center; align-items: center; gap: 0; padding: 1.5rem var(--gutter); }
 .rule img { width: min(44%, 22rem); filter: invert(1); opacity: 0.8; }
 .rule img + img { transform: scaleX(-1); }
+.rule-flip img { transform: scaleX(-1); }
 .hero .rule img, .site-footer .rule img { filter: none; }
 
 /* cross as list marker and small ornament */
