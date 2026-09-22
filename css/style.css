@@ -2,14 +2,6 @@
    Tokens sampled from Luke's business card and Instagram assets. */
 
 @font-face {
-  font-family: "UnifrakturCook";
-  src: url("../fonts/UnifrakturCook-700.woff2") format("woff2");
-  font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  /* Fallback for --display. Kept declared so the fallback in the token is
-     real: if the Fraktur file ever fails to load, headings land here rather
-     than on a generic serif. */
   font-family: "Grenze Gotisch";
   src: url("../fonts/GrenzeGotisch-500.woff2") format("woff2");
   font-weight: 500; font-style: normal; font-display: swap;
@@ -38,7 +30,7 @@
   --oxblood: #560000;
   --bone: #ffffff;
 
-  --display: "UnifrakturCook", "Grenze Gotisch", serif;
+  --display: "Grenze Gotisch", "UnifrakturCook", serif;
   --body: "EB Garamond", Garamond, Georgia, serif;
 
   --measure: 62ch;
@@ -68,7 +60,7 @@ a:hover { color: var(--ink); }
 
 h1, h2, h3 {
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.05;
   letter-spacing: 0.01em;
   margin: 0 0 0.5em;
