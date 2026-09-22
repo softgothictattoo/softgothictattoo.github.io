@@ -143,8 +143,20 @@ strong { font-weight: 600; }
 /* ---------- Portfolio grid ---------- */
 .grid { display: grid; gap: 0.9rem; grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 52rem) { .grid { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; } }
-.grid figure { margin: 0; background: var(--parchment-dark); }
+.grid figure { margin: 0; background: var(--parchment-dark); overflow: hidden; }
 .grid img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+
+/* Slight zoom on hover. overflow:hidden above keeps the growth inside the
+   tile instead of spilling over its neighbours. Guarded by hover:hover so a
+   touch screen does not leave a photo stuck mid-zoom after a tap. */
+@media (hover: hover) {
+  .grid img { transition: transform 0.4s ease; }
+  .grid figure:hover img { transform: scale(1.04); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid img { transition: none; }
+  .grid figure:hover img { transform: none; }
+}
 .grid figcaption { font-size: 0.95rem; padding: 0.5rem 0.2rem 0.8rem; color: #333; }
 
 /* ---------- Two-column info ---------- */

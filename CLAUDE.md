@@ -61,11 +61,15 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
 
 ## Current state / known work
 
-- `tattoos/index.html` is one flat gallery of 54 photos, in alphabetical
-  order by filename, with no Custom/Flash/Healed split and no captions.
-  The order is arbitrary and safe to rearrange; the alt text was written
-  from the photographs and should be corrected wherever it misreads a
-  piece.
+- `tattoos/index.html` is one flat gallery of 54 photos, with no
+  Custom/Flash/Healed split and no captions. Luke chose the first six
+  (swordneck, skull2, panther, dag, angel, horses1); the rest follow in
+  descending file size. The alt text was written from the photographs and
+  should be corrected wherever it misreads a piece.
+- `.grid` photos zoom slightly on hover, on both the home page and the
+  portfolio. The effect is off under `prefers-reduced-motion` and on
+  touch screens, and `overflow: hidden` on the figure keeps it inside
+  its tile. Keep those guards if you change it.
 - Three files in `img/tattoos/` are deliberately not on any page:
   - `me.jpg` is a portrait of Luke, not a tattoo. It belongs on `about/`
     if anywhere.
