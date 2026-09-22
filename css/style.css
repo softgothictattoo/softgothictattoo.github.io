@@ -116,7 +116,14 @@ strong { font-weight: 600; }
 /* ---------- Sections ---------- */
 .section { padding: var(--space) 0; }
 .section-alt { background: var(--parchment-dark); }
-.rule { display: flex; justify-content: center; align-items: center; gap: 0; padding: 1.5rem var(--gutter); }
+.rule { display: flex; justify-content: center; align-items: center; gap: 0; padding: 1rem var(--gutter); }
+/* A dagger is already a visual break, so a section butting onto one does not
+   need its full rhythm spacing as well: the two together read as a hole. */
+.rule + .section { padding-top: calc(var(--space) * 0.45); }
+.section:has(+ .rule) { padding-bottom: calc(var(--space) * 0.45); }
+/* A trailing button row carries its own bottom margin, which would stack
+   on that padding and reopen the gap the line above just closed. */
+.section:has(+ .rule) .btn-row:last-child { margin-bottom: 0; }
 .rule img { width: min(44%, 22rem); filter: invert(1); opacity: 0.8; }
 .rule img + img { transform: scaleX(-1); }
 .hero .rule img, .site-footer .rule img { filter: none; }
