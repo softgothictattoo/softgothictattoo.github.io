@@ -151,7 +151,7 @@ strong { font-weight: 600; }
    touch screen does not leave a photo stuck mid-zoom after a tap. */
 @media (hover: hover) {
   .grid img { transition: transform 0.4s ease; }
-  .grid figure:hover img { transform: scale(1.04); }
+  .grid figure:hover img { transform: scale(1.15); }
 }
 @media (prefers-reduced-motion: reduce) {
   .grid img { transition: none; }
