@@ -43,11 +43,11 @@
 /* The parchment colour stays underneath: the tile is the same #e5e4c6 in its
    light areas, so the page still reads correctly while the image loads, and
    if it ever fails to load nothing shifts.
-   14rem, not larger: the artwork is a kaleidoscope rather than a true
-   repeating wallpaper, and at a big tile size its mirror axes read as
-   irregular blobs with flattened bands between them. Small enough and the
-   geometry resolves into an even lattice. */
-html { background: var(--parchment) url("../img/bg-pattern.jpg") top center / 14rem repeat; scroll-behavior: smooth; }
+   20rem: the artwork is a kaleidoscope rather than a true
+   repeating wallpaper, so past roughly 24rem its mirror axes read as
+   irregular blobs with flattened bands between them rather than a pattern.
+   This is about as large as it goes while the geometry still resolves. */
+html { background: var(--parchment) url("../img/bg-pattern.jpg") top center / 20rem repeat; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -106,12 +106,20 @@ strong { font-weight: 600; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative; isolation: isolate;
-  background: var(--ink) url("../img/texture.jpg") center / cover;
+  /* Collage of 24 pieces from img/tattoos, desaturated and darkened.
+     --ink underneath keeps the band solid while it loads. White text sits
+     on this, so the darkening in the file and the ::before gradient below
+     work together; check contrast if either changes. */
+  background: var(--ink) url("../img/hero-collage.jpg") center / cover;
   color: var(--bone);
   padding: var(--space) 0;
 }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.25)); }
+  background: linear-gradient(90deg, rgba(0,0,0,.6), rgba(0,0,0,.4)); }
+/* The gradient is horizontal, so on a wide screen the text sits in its dark
+   end and the light end falls under the artwork. On a phone the text spans
+   the full width and reaches the light end, which is why the light stop is
+   .4 and not lower: at .25 the heading measured 4.2:1 there, under AA. */
 .hero .wrap { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
 @media (min-width: 52rem) { .hero .wrap { grid-template-columns: 1.1fr 0.9fr; } }
 .hero h1 { color: var(--bone); margin-bottom: 0.3em; }
