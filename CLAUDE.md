@@ -89,13 +89,6 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   tile, set on `html` over the `--parchment` colour. The tile is seamless
   and its light areas are exactly `#e5e4c6`, so the colour underneath
   matches and nothing shifts if the image fails to load.
-- The header bar is `img/header-collage.jpg`, 24 pieces from
-  `img/tattoos/` in a 12x2 grid, desaturated and darkened. It is sized to
-  the bar's height and repeated across, not `cover`, so whole miniatures
-  show rather than a cropped slice of limbs. White nav text sits on it, so
-  keep the darkening and the `::before` overlay together: they put the
-  worst case at 6:1. Rebuild it by re-running the montage over a new
-  selection, then re-check contrast before pushing.
 - `img/luke.jpg` is the portrait on `about/`. It is a flat JPEG, not a
   transparent PNG: the source was a circle inscribed in a square, so
   `.portrait img` does the crop with `border-radius: 50%`. The source was
