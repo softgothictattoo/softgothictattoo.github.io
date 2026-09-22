@@ -43,6 +43,19 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
 - **Images**: lowercase filenames, hyphens not spaces, `.jpg` (not `.JPEG`).
   Tattoo photos go in `img/tattoos/`; nothing else does. Always give `<img>` a
   `width`, `height`, descriptive `alt`, and `loading="lazy"` below the fold.
+
+  Upload photos at whatever size the phone produced. Once they reach `main`,
+  `.github/workflows/optimise-images.yml` resizes them to 1600px on the long
+  edge, converts to sRGB, strips metadata and re-saves photographic PNGs as
+  JPEG, then commits the result. Run `.github/scripts/optimise-images.sh`
+  locally for the same thing, or `--check` to see what it would do. It only
+  touches `img/tattoos/`, never site chrome, and running it twice changes
+  nothing the second time.
+
+  The script also fails if a file in `img/tattoos/` is not a valid image.
+  Uploading through the GitHub web UI has silently produced 2-byte files
+  before, recording the filename but not the contents; this is the guard
+  against that going unnoticed.
 - **SEO**: every page carries a canonical URL, OG tags and JSON-LD. When you
   add a page, add it to `sitemap.xml` too and bump `lastmod`.
 
@@ -53,13 +66,8 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   description" alt text. The ~60 real photos in `img/tattoos/` are not yet
   used anywhere. Wiring them up, with real captions and alt text, is the
   next obvious job.
-- Photos come straight off a phone and several are multi-megabyte
-  (`micah.jpg` is 4.2 MB, `hammer.jpg` 3.5 MB). Resize to roughly 1600px on
-  the long edge and save as JPEG or WebP before putting one on a page —
-  full-resolution originals would make the gallery unusable on mobile data.
-- Uploading images through the GitHub web UI has silently produced 2-byte
-  files in the past. After any web upload, check the file size before
-  referencing it.
+- Photos in `img/tattoos/` are optimised automatically once they land on
+  `main` — see "Images" above. Nothing needs doing by hand.
 - The "Healed" section of the portfolio page is a heading with no photos yet.
 
 ## Working agreement

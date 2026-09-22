@@ -1,0 +1,66 @@
+name: Optimise images
+
+# Photos get uploaded straight from a phone, so they arrive at 20 MB and
+# 4000px wide. This shrinks them in place and commits the result back.
+#
+# On main it fixes the images and pushes the fix. On a pull request it only
+# reports, so a branch can be checked without rewriting someone's commits.
+
+on:
+  push:
+    branches: [main]
+    paths: ['img/tattoos/**']
+  pull_request:
+    paths: ['img/tattoos/**']
+  workflow_dispatch:
+
+# Two pushes in quick succession would otherwise race to commit.
+concurrency:
+  group: optimise-images-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  optimise:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ImageMagick and the sRGB profile
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq imagemagick icc-profiles-free
+
+      # A pull request only gets told what would change. Nothing is rewritten,
+      # and a non-image file (a failed upload) fails the check.
+      - name: Check images
+        if: github.event_name == 'pull_request'
+        run: ./.github/scripts/optimise-images.sh --check
+
+      - name: Optimise images
+        if: github.event_name != 'pull_request'
+        run: ./.github/scripts/optimise-images.sh
+
+      - name: Commit the results
+        if: github.event_name != 'pull_request'
+        run: |
+          # --porcelain, not `git diff`: a PNG converted to JPEG leaves a new
+          # untracked file that `git diff` alone would not report.
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing to commit - every image was already optimised."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit \
+            -m "Optimise images for the web" \
+            -m "Resized to 1600px on the long edge, converted to sRGB, stripped of metadata, and photographic PNGs saved as JPEG. Done automatically by .github/workflows/optimise-images.yml."
+
+          # A push made with GITHUB_TOKEN does not start another workflow run,
+          # so this cannot loop back into itself.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
