@@ -85,6 +85,15 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
     copy the site uses.
 - Photos in `img/tattoos/` are optimised automatically once they land on
   `main` — see "Images" above. Nothing needs doing by hand.
+- Every page's background is `img/bg-pattern.jpg`, Luke's bird-and-leaf
+  tile, set on `html` over the `--parchment` colour. The tile is seamless
+  and its light areas are exactly `#e5e4c6`, so the colour underneath
+  matches and nothing shifts if the image fails to load.
+- `img/luke.jpg` is the portrait on `about/`. It is a flat JPEG, not a
+  transparent PNG: the source was a circle inscribed in a square, so
+  `.portrait img` does the crop with `border-radius: 50%`. The source was
+  also shaved slightly before flattening, so the circle's soft edge falls
+  outside the CSS circle; without that a pale fringe rings the portrait.
 - The portfolio lives at `/gallery/`. It was at `/tattoos/`, and
   `tattoos/index.html` is now a small stub that redirects there: a meta
   refresh plus a canonical, since GitHub Pages cannot serve a 301. It is

@@ -115,6 +115,11 @@ strong { font-weight: 600; }
 .hero a { color: var(--bone); }
 .hero-art { justify-self: center; max-width: 30rem; }
 .hero-art img { background: var(--bone); border: 4px solid var(--bone); }
+/* The portrait is a circle drawn on a square with transparent corners, so the
+   crop is done here rather than baked into the file: that keeps it a small
+   flat JPEG and lets the browser antialias the edge. */
+.portrait { justify-self: center; max-width: 30rem; }
+.portrait img { width: 100%; height: auto; border-radius: 50%; }
 
 /* ---------- Sections ---------- */
 .section { padding: var(--space) 0; }
