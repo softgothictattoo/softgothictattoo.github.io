@@ -66,6 +66,12 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   (swordneck, skull2, panther, dag, angel, horses1); the rest follow in
   descending file size. The alt text was written from the photographs and
   should be corrected wherever it misreads a piece.
+- `img/dagger-flipped.png` is a mirrored copy of `img/dagger.png`, used
+  for the divider above "Recent tattoos" so the two rules on the home
+  page point opposite ways. It is a real flipped file rather than a CSS
+  `scaleX(-1)` so the divider cannot render the wrong way round against a
+  stale cached stylesheet. If the dagger artwork is ever redrawn, redo
+  the mirror with `convert img/dagger.png -flop img/dagger-flipped.png`.
 - `.grid` photos zoom slightly on hover, on both the home page and the
   portfolio. The effect is off under `prefers-reduced-motion` and on
   touch screens, and `overflow: hidden` on the figure keeps it inside
