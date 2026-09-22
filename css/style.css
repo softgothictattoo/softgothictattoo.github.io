@@ -84,9 +84,21 @@ strong { font-weight: 600; }
 
 /* ---------- Header ---------- */
 .site-header {
-  background: var(--ink);
+  /* Collage of Luke's own work, 24 pieces in a 12x2 grid. --ink stays
+     underneath so the bar is solid while the image loads and if it never
+     arrives. Sized to the bar's height and repeated across rather than
+     "cover": cover crops a thin slice through the middle of the grid and
+     shows fragments of limbs, where fitting the height shows whole
+     miniatures. The overlay plus the darkening in the file put white text
+     at 6:1 against the brightest patch. */
+  position: relative; isolation: isolate;
+  background: var(--ink) url("../img/header-collage.jpg") center / auto 100% repeat-x;
   color: var(--bone);
   border-bottom: 3px solid var(--oxblood);
+}
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgba(0, 0, 0, 0.45);
 }
 .site-header .wrap {
   display: flex; align-items: center; justify-content: space-between;
