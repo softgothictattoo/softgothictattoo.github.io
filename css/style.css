@@ -42,8 +42,12 @@
 
 /* The parchment colour stays underneath: the tile is the same #e5e4c6 in its
    light areas, so the page still reads correctly while the image loads, and
-   if it ever fails to load nothing shifts. */
-html { background: var(--parchment) url("../img/bg-pattern.jpg") top center / 30rem repeat; scroll-behavior: smooth; }
+   if it ever fails to load nothing shifts.
+   14rem, not larger: the artwork is a kaleidoscope rather than a true
+   repeating wallpaper, and at a big tile size its mirror axes read as
+   irregular blobs with flattened bands between them. Small enough and the
+   geometry resolves into an even lattice. */
+html { background: var(--parchment) url("../img/bg-pattern.jpg") top center / 14rem repeat; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
