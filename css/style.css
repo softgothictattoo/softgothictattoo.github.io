@@ -133,7 +133,7 @@ strong { font-weight: 600; }
    outer edges want air instead: the top dagger should sit clear of the hero,
    and the lower one should give the section beneath it room to start. Dropping
    the pull on just those edges restores the image's own spacing there. */
-.hero + .rule { margin-top: 0; }
+.hero + .rule { margin-top: calc(var(--space) * 0.25); }
 .section + .rule { margin-bottom: calc(var(--space) * 0.15); }
 /* A trailing button row carries its own bottom margin, which would stack
    on that padding and reopen the gap the line above just closed. */
