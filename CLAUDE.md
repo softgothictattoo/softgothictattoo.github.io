@@ -53,14 +53,14 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   description" alt text. The ~60 real photos in `img/tattoos/` are not yet
   used anywhere. Wiring them up, with real captions and alt text, is the
   next obvious job.
-- Several photos are very large (`satan.png` is 15 MB, `knuck.png` 7.6 MB).
-  They need resizing and converting to JPEG/WebP before they go on a page —
-  as-is they would make the gallery unusable on mobile data.
+- Photos come straight off a phone and several are multi-megabyte
+  (`micah.jpg` is 4.2 MB, `hammer.jpg` 3.5 MB). Resize to roughly 1600px on
+  the long edge and save as JPEG or WebP before putting one on a page —
+  full-resolution originals would make the gallery unusable on mobile data.
+- Uploading images through the GitHub web UI has silently produced 2-byte
+  files in the past. After any web upload, check the file size before
+  referencing it.
 - The "Healed" section of the portfolio page is a heading with no photos yet.
-- `img/tattoos/skull1.jpg` and `img/tattoos/starfishies.jpg` are **not images**
-  — each is 2 bytes containing a bare CRLF, left behind by a failed upload via
-  the GitHub web UI. Re-upload the real photos or delete the files; do not put
-  them on a page.
 
 ## Working agreement
 
