@@ -116,11 +116,18 @@ strong { font-weight: 600; }
 /* ---------- Sections ---------- */
 .section { padding: var(--space) 0; }
 .section-alt { background: var(--parchment-dark); }
-.rule { display: flex; justify-content: center; align-items: center; gap: 0; padding: 1rem var(--gutter); }
+/* The blade is a thin line in a box ~101px tall: the crossguard spikes are
+   part of the artwork, so the canvas cannot be cropped, but the space they
+   sit in is nearly empty. The negative margin reclaims that dead space, which
+   padding alone cannot reach. It scales with the viewport because the dead
+   space scales with the image: a fixed value large enough to help on desktop
+   is larger than the whole empty area on a phone, and pulls the spike tips up
+   into the dark hero where they vanish. */
+.rule { display: flex; justify-content: center; align-items: center; gap: 0; padding: 0 var(--gutter); margin: clamp(-1.5rem, -2vw, -0.5rem) 0; }
 /* A dagger is already a visual break, so a section butting onto one does not
    need its full rhythm spacing as well: the two together read as a hole. */
-.rule + .section { padding-top: calc(var(--space) * 0.45); }
-.section:has(+ .rule) { padding-bottom: calc(var(--space) * 0.45); }
+.rule + .section { padding-top: calc(var(--space) * 0.3); }
+.section:has(+ .rule) { padding-bottom: calc(var(--space) * 0.3); }
 /* A trailing button row carries its own bottom margin, which would stack
    on that padding and reopen the gap the line above just closed. */
 .section:has(+ .rule) .btn-row:last-child { margin-bottom: 0; }

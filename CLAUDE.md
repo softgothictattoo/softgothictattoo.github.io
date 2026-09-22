@@ -67,7 +67,7 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   descending file size. The alt text was written from the photographs and
   should be corrected wherever it misreads a piece.
 - `img/dagger-flipped.png` is a mirrored copy of `img/dagger.png`, used
-  for the divider above "Recent tattoos" so the two rules on the home
+  for the divider above "Recent work" so the two rules on the home
   page point opposite ways. It is a real flipped file rather than a CSS
   `scaleX(-1)` so the divider cannot render the wrong way round against a
   stale cached stylesheet. If the dagger artwork is ever redrawn, redo
