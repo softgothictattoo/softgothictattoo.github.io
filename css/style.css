@@ -43,11 +43,11 @@
 /* The parchment colour stays underneath: the tile is the same #e5e4c6 in its
    light areas, so the page still reads correctly while the image loads, and
    if it ever fails to load nothing shifts.
-   20rem: the artwork is a kaleidoscope rather than a true
+   26rem: the artwork is a kaleidoscope rather than a true
    repeating wallpaper, so past roughly 24rem its mirror axes read as
    irregular blobs with flattened bands between them rather than a pattern.
    This is about as large as it goes while the geometry still resolves. */
-html { background: var(--parchment) url("../img/bg-pattern.jpg") top center / 20rem repeat; scroll-behavior: smooth; }
+html { background: var(--parchment) url("../img/bg-pattern.jpg") top center / 26rem repeat; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -126,7 +126,9 @@ strong { font-weight: 600; }
 .hero p { font-size: 1.15em; color: var(--bone); }
 .hero a { color: var(--bone); }
 .hero-art { justify-self: center; max-width: 30rem; }
-.hero-art img { background: var(--bone); border: 4px solid var(--bone); }
+/* The artwork is now cream ink on transparency, drawn to sit straight on
+   the dark hero. The white mount it used to need would box it in. */
+.hero-art img { background: none; border: 0; }
 /* The portrait is a circle drawn on a square with transparent corners, so the
    crop is done here rather than baked into the file: that keeps it a small
    flat JPEG and lets the browser antialias the edge. */

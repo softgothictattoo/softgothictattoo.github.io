@@ -89,9 +89,17 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   tile, set on `html` over the `--parchment` colour. The tile is seamless
   and its light areas are exactly `#e5e4c6`, so the colour underneath
   matches and nothing shifts if the image fails to load.
-  Drawn at 20rem. It is a kaleidoscope rather than a true repeating
-  wallpaper, so past roughly 24rem its mirror axes read as irregular
-  blobs rather than a pattern.
+  Drawn at 26rem. It is a kaleidoscope rather than a true repeating
+  wallpaper, so past roughly 30rem its mirror axes read as irregular
+  blobs rather than a pattern. 30rem was the first setting tried and was
+  rejected for exactly that; 26 is about the ceiling.
+- The hero artwork is `img/eye-flash-light.png`: the eye design in cream
+  ink on transparency, so it sits straight on the dark hero with no
+  mount. `.hero-art img` therefore sets `background: none; border: 0`.
+  It is a 64-colour palette PNG, which for two-tone artwork is a tenth
+  the size of truecolour with no visible loss, 12.4 MB down to 94 KB.
+  `img/eye-flash.jpg`, the black-on-white version it replaced, is now
+  unused, as is `img/texture.jpg`.
 - The home page hero sits on `img/hero-collage.jpg`, 24 pieces from
   `img/tattoos/` in a 12x2 grid, desaturated and darkened. It replaced
   `img/texture.jpg`, which is now unused. White text sits on it, so the
