@@ -16,7 +16,7 @@ without asking first.
 ```
 index.html            404.html            robots.txt   sitemap.xml
 about/index.html      booking/index.html
-studio/index.html     tattoos/index.html
+studio/index.html     gallery/index.html
 css/style.css         fonts/*.woff2
 img/                  site chrome only (logo, favicons, textures, og image)
 img/tattoos/          every tattoo photo
@@ -61,7 +61,7 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
 
 ## Current state / known work
 
-- `tattoos/index.html` is one flat gallery of 54 photos, with no
+- `gallery/index.html` is one flat gallery of 54 photos, with no
   Custom/Flash/Healed split and no captions. Luke chose the first six
   (swordneck, skull2, panther, dag, angel, horses1); the rest follow in
   descending file size. The alt text was written from the photographs and
@@ -85,6 +85,13 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
     copy the site uses.
 - Photos in `img/tattoos/` are optimised automatically once they land on
   `main` — see "Images" above. Nothing needs doing by hand.
+- The portfolio lives at `/gallery/`. It was at `/tattoos/`, and
+  `tattoos/index.html` is now a small stub that redirects there: a meta
+  refresh plus a canonical, since GitHub Pages cannot serve a 301. It is
+  marked noindex and is deliberately absent from `sitemap.xml`. Do not
+  delete it; old links and shared posts still point at the old address.
+  Note `img/tattoos/` is the photo directory and is unrelated to the page
+  path — it did not move.
 
 ## Working agreement
 
