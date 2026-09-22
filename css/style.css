@@ -128,6 +128,13 @@ strong { font-weight: 600; }
    need its full rhythm spacing as well: the two together read as a hole. */
 .rule + .section { padding-top: calc(var(--space) * 0.3); }
 .section:has(+ .rule) { padding-bottom: calc(var(--space) * 0.3); }
+
+/* The negative margin above closes the gap on both sides of a dagger. The two
+   outer edges want air instead: the top dagger should sit clear of the hero,
+   and the lower one should give the section beneath it room to start. Dropping
+   the pull on just those edges restores the image's own spacing there. */
+.hero + .rule { margin-top: 0; }
+.section + .rule { margin-bottom: calc(var(--space) * 0.15); }
 /* A trailing button row carries its own bottom margin, which would stack
    on that padding and reopen the gap the line above just closed. */
 .section:has(+ .rule) .btn-row:last-child { margin-bottom: 0; }
