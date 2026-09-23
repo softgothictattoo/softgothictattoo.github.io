@@ -32,8 +32,9 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
 - **British English** throughout, and `lang="en-GB"`. "Colour", "jewellery",
   "realise". Prices in £.
 - **Tone**: plain, warm, unfussy, lowercase branding ("soft gothic tattoo").
-  Not spooky-cliché, not salesy. "Everyone is welcome here" is the footer line
-  and the spirit of the whole site.
+  Not spooky-cliché, not salesy. "Everyone is welcome here" was removed from
+  the footer at Luke's request; it still opens the home page and heads a
+  section on `about/`, and remains the spirit of the site.
 - **CSS**: all design tokens are custom properties on `:root` in
   `css/style.css` — `--ink`, `--parchment`, `--oxblood`, `--bone`, plus
   `--display` / `--body` for the two typefaces. Use the tokens, don't hardcode
