@@ -86,6 +86,17 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
     copy the site uses.
 - Photos in `img/tattoos/` are optimised automatically once they land on
   `main` — see "Images" above. Nothing needs doing by hand.
+- Every photo in `img/tattoos/` also has a `-400` companion, built by the
+  same script, and the gallery and home page reference both through
+  `srcset`. A phone draws a tile about 170px wide, so the full-size file
+  was roughly four times larger than it could use: the gallery went from
+  13.2 MB to 1.5 MB on a phone. The `w` descriptors are the files' real
+  widths, read per image, not assumed. That matters: the variants are
+  resized by width, not fitted into a 400x400 box, because a portrait
+  photo fitted into that box is only 300px wide and a `400w` label on it
+  makes the browser choose it for slots it cannot fill. If you add an
+  `<img>` from `img/tattoos/` to a page, give it the same `srcset` and
+  `sizes`.
 - Every page's background is `img/bg-pattern.jpg`, Luke's bird-and-leaf
   tile, set on `html` over the `--parchment` colour. The tile is seamless
   and its light areas are exactly `#e5e4c6`, so the colour underneath

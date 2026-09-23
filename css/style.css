@@ -104,6 +104,10 @@ strong { font-weight: 600; }
 .site-nav a:hover, .site-nav a[aria-current="page"] { border-bottom-color: var(--oxblood); color: var(--bone); }
 @media (max-width: 40rem) {
   .site-header .wrap { flex-direction: column; align-items: flex-start; }
+  /* Thumb-sized nav targets. At 0.3em padding these came out 38px tall, under
+     the 44px touch guideline; the extra padding is only applied here so the
+     desktop header keeps its height. */
+  .site-nav a { padding: 0.62em 0; }
   .site-nav ul { justify-content: flex-start; }
 }
 
