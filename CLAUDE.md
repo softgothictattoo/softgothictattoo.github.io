@@ -109,11 +109,22 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   placement where the photograph shows it plainly. Each one says "tattoo",
   "tattoos" or "tattooed" - Luke asked for that, and it is also what makes
   the page read as tattoo work to a search engine. Keep that if you edit
-  them, and keep them short: they sit inside `.grid figure`, which has
-  `overflow: hidden` for the hover zoom, so a caption long enough to wrap
-  to three lines on a phone risks being clipped. Check at 360px after any
-  rewrite. Alt text stays fuller and separate - a caption is read by
-  everyone, alt by people who cannot see the image.
+  them. Alt text stays fuller and separate - alt describes the picture for
+  someone who cannot see it, the caption names the piece.
+  **The captions are not printed under the tiles.** Luke wanted the grid to
+  be photographs and nothing else, so `.grid figcaption` is visually
+  hidden and the lightbox prints the caption under the enlarged photo
+  instead, reading it out of the `<figcaption>` when a photo opens.
+  Deleting the `<figcaption>` would empty the lightbox caption, so keep it.
+  Hiding it this way is deliberate and is not an SEO trick: the words are
+  shown to everyone who opens a photograph, and a screen reader still
+  reads them in the grid. Hiding text that no visitor can ever reach, to
+  be seen only by a crawler, is what Google calls hidden text and would be
+  worth less than nothing. If the lightbox is ever removed, the captions
+  must become visible again or come out altogether.
+  Check the lightbox caption at 1280px, 390px and 360px after any rewrite:
+  `.lightbox img` reserves bottom clearance for the caption and the
+  counter, so a long caption can start overlapping the photograph.
 - Photo filenames in `img/tattoos/` are descriptive slugs derived from the
   captions: `fine-dotwork-sword-tattoo-sternum.jpg`, not `swordneck.jpg`.
   They were renamed once, deliberately, at a point when the canonical bug

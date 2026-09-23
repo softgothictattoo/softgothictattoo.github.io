@@ -214,7 +214,16 @@ strong { font-weight: 600; }
   .grid img { transition: none; }
   .grid figure:hover img { transform: none; }
 }
-.grid figcaption { font-size: 0.95rem; padding: 0.5rem 0.2rem 0.8rem; color: #333; }
+/* The caption is not printed under the tile: Luke wanted the grid to be
+   photographs and nothing else. It is not deleted, because it is the
+   caption the lightbox reads out and because a screen reader should still
+   get it while moving through the grid. It is shown, to everyone, the
+   moment a photograph is opened - so the words are reachable rather than
+   buried for a crawler's benefit. */
+.grid figcaption {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
 
 /* ---------- Two-column info ---------- */
 .cols { display: grid; gap: 2rem; grid-template-columns: 1fr; }
@@ -274,7 +283,8 @@ strong { font-weight: 600; }
   position: absolute; inset: 0; margin: auto;
   width: auto; height: auto;
   max-width: calc(100% - 5rem);
-  max-height: calc(100% - 6rem);
+  /* Bottom clearance covers the caption and the counter under the photo. */
+  max-height: calc(100% - 8.5rem);
 }
 .lightbox-btn {
   position: absolute;
@@ -293,11 +303,13 @@ strong { font-weight: 600; }
 .lightbox-next { right: 0.5rem; top: 50%; transform: translateY(-50%); }
 /* max-width: none undoes the global measure on p, which would otherwise pin
    this to a 62ch box on the left rather than centring it under the photo. */
-.lightbox-count {
-  position: absolute; left: 0; right: 0; bottom: 1rem;
-  margin: 0; max-width: none;
-  text-align: center; font-size: 0.95rem; opacity: 0.75;
+.lightbox-caption, .lightbox-count {
+  position: absolute; left: 0; right: 0;
+  margin: 0; max-width: none; padding: 0 4.5rem;
+  text-align: center;
 }
+.lightbox-caption { bottom: 2.4rem; font-size: 1.05rem; }
+.lightbox-count { bottom: 1rem; font-size: 0.9rem; opacity: 0.6; }
 
 /* Stop the page scrolling behind the open photo. */
 body:has(.lightbox[open]) { overflow: hidden; }
@@ -306,7 +318,8 @@ body:has(.lightbox[open]) { overflow: hidden; }
    screen, so let them sit over its edges instead; their dark discs stay
    legible against the photograph. */
 @media (max-width: 40rem) {
-  .lightbox img { max-width: calc(100% - 1rem); max-height: calc(100% - 7rem); }
+  .lightbox img { max-width: calc(100% - 1rem); max-height: calc(100% - 9rem); }
+  .lightbox-caption, .lightbox-count { padding: 0 1rem; }
   .lightbox-prev { left: 0.4rem; }
   .lightbox-next { right: 0.4rem; }
 }
