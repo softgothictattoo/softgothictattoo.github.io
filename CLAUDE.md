@@ -69,6 +69,14 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   Uploading through the GitHub web UI has silently produced 2-byte files
   before, recording the filename but not the contents; this is the guard
   against that going unnoticed.
+- `googlebfa46c13243ecf6f.html` at the repo root is Google Search Console's
+  verification file for the `https://softgothictattoo.github.io/` URL-prefix
+  property. It must stay at the root, keep that exact filename, and keep its
+  exact 53 bytes - Google re-checks it periodically and unverifies the
+  property if it stops matching. It is deliberately absent from
+  `sitemap.xml`. A Domain property was not an option: that needs a DNS TXT
+  record, and the DNS for `github.io` is not Luke's to change.
+
 - **SEO**: every page carries a canonical URL, OG tags and JSON-LD. When you
   add a page, add it to `sitemap.xml` too and bump `lastmod`.
   `sitemap.xml` also carries `<image:image>` entries for all 60 tattoo
