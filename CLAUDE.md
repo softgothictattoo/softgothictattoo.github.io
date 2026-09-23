@@ -57,11 +57,15 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   wordmark made it vanish. The brand now goes `--oxblood-bright`; the hero
   and footer links stay `--bone` and thicken their underline. If you add a
   link to any dark surface, give it a hover rule or it will disappear.
-- **`--oxblood-bright` (#c00000)** is `--oxblood` lightened for text on
-  `--ink`, and is only for that. `--oxblood` itself measures 1.40:1 on
-  black, no more readable than the black it would replace; the lighter red
-  is 3.24:1, which clears the 3:1 large text needs. It is not enough for
-  body-size text, which is why the footer keeps white on hover.
+- **`--oxblood-deep` (#9a0000)** is `--oxblood` lifted just enough to read
+  on `--ink`, and is only for that. `--oxblood` itself is 1.40:1 on black,
+  no better than the black it would replace. `#9a0000` is 2.37:1, under the
+  3:1 large text wants: a deliberate trade, because Luke asked for a deeper
+  red than the 3.24:1 `#c00000` that came first. It holds up because the
+  wordmark is heavy display type next to a logo disc in the same red, and
+  because it is only a hover state - at rest the wordmark is `--bone` at
+  21:1. Do not reach for it for body-size text; that is why the footer
+  keeps white on hover.
 - **Selected text** is `--oxblood` with `--bone` on top, set once as
   `::selection` in `css/style.css`. White on `#560000` is about 14.9:1.
   This is separate from hover - it is what a drag-select paints.
