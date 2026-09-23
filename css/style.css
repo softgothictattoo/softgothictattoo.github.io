@@ -202,7 +202,13 @@ strong { font-weight: 600; }
    touch screen does not leave a photo stuck mid-zoom after a tap. */
 @media (hover: hover) {
   .grid img { transition: transform 0.4s ease; }
-  .grid figure:hover img { transform: scale(1.15); }
+  /* 25%. On a 1x desktop the browser picks the 400px file for a 371px slot,
+     which a 25% zoom stretches about 1.16x, so the hovered tile softens very
+     slightly there. Inflating the `sizes` slot to cover the zoom would fix it
+     but would pull the full-size file back down on every 1x desktop, and on
+     phones, where hover never fires at all. Not worth 11 MB for a transient
+     artefact on one tile. */
+  .grid figure:hover img { transform: scale(1.25); }
 }
 @media (prefers-reduced-motion: reduce) {
   .grid img { transition: none; }
