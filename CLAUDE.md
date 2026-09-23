@@ -85,14 +85,18 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
 ## Current state / known work
 
 - `gallery/index.html` is one flat gallery of 54 photos, with no
-  Custom/Flash/Healed split. Luke chose the first six (swordneck, skull2,
-  panther, dag, angel, horses1); the rest follow in descending file size.
+  Custom/Flash/Healed split. Luke chose the first six - the sword on the
+  sternum, the spiked skull, the big cat, the ornate dagger, the angel and
+  the horses - and the rest follow in descending file size.
   The alt text was written from the photographs and should be corrected
   wherever it misreads a piece. Known suspects, flagged but not yet ruled
-  on by Luke: `clover.jpg` says four-leaf where the photo shows three
-  lobes; `boiler.jpg` says bell where it looks like a dark vessel;
-  `skull2.jpg` and `horses1.jpg` name placements the photographs seem to
-  contradict; `joey.jpg` cites letters "XO" that are not visible.
+  on by Luke: `solid-black-clover-tattoo.jpg` says four-leaf where the
+  photo shows three lobes; `dark-vessel-tattoo-curling-tendril.jpg` says
+  bell where it looks like a dark vessel; `spiked-skull-tattoo-dotwork.jpg`
+  and `horses-spiked-frame-tattooed-arm.jpg` name placements the
+  photographs seem to contradict;
+  `small-horned-creature-tattooed-forearm.jpg` cites letters "XO" that are
+  not visible.
   Every photo has a `<figcaption>`: a short label, subject first,
   placement where the photograph shows it plainly. Each one says "tattoo",
   "tattoos" or "tattooed" - Luke asked for that, and it is also what makes
@@ -102,6 +106,15 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   to three lines on a phone risks being clipped. Check at 360px after any
   rewrite. Alt text stays fuller and separate - a caption is read by
   everyone, alt by people who cannot see the image.
+- Photo filenames in `img/tattoos/` are descriptive slugs derived from the
+  captions: `fine-dotwork-sword-tattoo-sternum.jpg`, not `swordneck.jpg`.
+  They were renamed once, deliberately, at a point when the canonical bug
+  meant the site was almost certainly not indexed, so no image search
+  equity was lost. Do not rename them again casually: an image URL that
+  changes after it has been indexed or shared loses whatever it had. New
+  photos should arrive with a name of this shape. `me.jpg` and `bread.jpg`
+  keep their original names because they are on no page.
+
 - `img/dagger-flipped.png` is a mirrored copy of `img/dagger.png`, used
   for the divider above "Recent work" so the two rules on the home
   page point opposite ways. It is a real flipped file rather than a CSS
@@ -117,8 +130,9 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
     if anywhere.
   - `bread.jpg` is a group photo in which four people's faces are clearly
     identifiable. Not published pending their say-so.
-  (`pin.jpg` was a third: the same photograph as `bicep_heart.webp`, which
-  is the copy the site uses. It was deleted along with its variants.)
+  (`pin.jpg` was a third: the same photograph as
+  `pierced-hearts-tattoo-lettering.webp`, which is the copy the site uses.
+  It was deleted along with its variants.)
 - Photos in `img/tattoos/` are optimised automatically once they land on
   `main` — see "Images" above. Nothing needs doing by hand.
 - Every photo in `img/tattoos/` also has `-400` and `-800` companions,
