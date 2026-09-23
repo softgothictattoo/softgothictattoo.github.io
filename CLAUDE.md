@@ -95,6 +95,15 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
 
 ## Current state / known work
 
+- The gallery page carries almost no body copy by choice. An introduction
+  was written and then removed at Luke's request: the page is the h1, one
+  line pointing at Venue and Instagram, and the photographs. That costs
+  something in search - it is the page most likely to rank for "blackwork
+  tattoo bristol", and the words "Bristol", "blackwork" and "dotwork" are
+  now only in its `<title>`, meta description, alt text and the hidden
+  captions, not in visible prose. That is Luke's call and has been made
+  twice; do not quietly reinstate an intro paragraph.
+
 - `gallery/index.html` is one flat gallery of 54 photos, with no
   Custom/Flash/Healed split. Luke chose the first six - the sword on the
   sternum, the spiked skull, the big cat, the ornate dagger, the angel and
