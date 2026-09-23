@@ -77,24 +77,28 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   portfolio. The effect is off under `prefers-reduced-motion` and on
   touch screens, and `overflow: hidden` on the figure keeps it inside
   its tile. Keep those guards if you change it.
-- Three files in `img/tattoos/` are deliberately not on any page:
+- Two files in `img/tattoos/` are deliberately not on any page:
   - `me.jpg` is a portrait of Luke, not a tattoo. It belongs on `about/`
     if anywhere.
   - `bread.jpg` is a group photo in which four people's faces are clearly
     identifiable. Not published pending their say-so.
-  - `pin.jpg` is the same photograph as `bicep_heart.webp`, which is the
-    copy the site uses.
+  (`pin.jpg` was a third: the same photograph as `bicep_heart.webp`, which
+  is the copy the site uses. It was deleted along with its variants.)
 - Photos in `img/tattoos/` are optimised automatically once they land on
   `main` — see "Images" above. Nothing needs doing by hand.
 - Every photo in `img/tattoos/` also has `-400` and `-800` companions,
   built by the same script, and the gallery and home page offer all three
-  through `srcset`. The `sizes` slot is deliberately not the tile's real
-  width: it declares 1200px above 52rem so that any desktop or large
-  screen takes the master. The gallery is a showcase and the full file is
-  the point there; only the phone branch, 45vw, is allowed to take a
-  variant, because a 2x phone cannot resolve more than about 340px in a
-  170px tile. All 54 loaded: 1.3 MB on a 2x phone, 4.2 MB on a 3x phone,
-  6.3 MB on a desktop.
+  through `srcset`. `sizes` declares the tile's real width - 380px above
+  52rem, 45vw below - so every screen takes the smallest file that can
+  fill the tile: 400w at 1x, 800w at 2x. A `.grid` tile is 371px wide on
+  any desktop, because `.wrap` caps at 72rem and the grid is three
+  columns, so it cannot show more than that however large the monitor.
+  It used to declare 1200px so desktops took the master, on the grounds
+  that the gallery is a showcase. Click-to-enlarge replaced that reason:
+  the full-size master is now fetched when someone actually asks for it,
+  so the tiles no longer carry it. All 54 loaded: 1.27 MB on a 1x desktop
+  or 2x phone, 4.22 MB at 2x, against 6.3 MB when the tiles took masters.
+  Do not put the 1200px back without also removing the lightbox.
   The `w` descriptors are each file's real width, read per image, not
   assumed, and the variants are resized by width rather than fitted into
   a box. A portrait photo fitted into a 400x400 box is only 300px wide,
@@ -148,13 +152,13 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   still unused. `.hero-art img` therefore sets `background: none; border: 0`.
   It is a 64-colour palette PNG, which for two-tone artwork is a tenth
   the size of truecolour with no visible loss, 12.4 MB down to 94 KB.
-  `img/eye-flash-dark.png` was given the same treatment (it arrived as
-  `IMG_7660.PNG`, 9933px square and 8.3 MB): resized to 1400px and
-  quantised to 64 colours with its transparency kept, 66 KB. Redo it with
-  `convert <source> -resize 1400x1400 -colors 64 -strip PNG8:<dest>`.
-  `img/eye-flash.jpg`, the black-on-white version it replaced, is now
-  unused, as is `img/texture.jpg`. Both are small (272 KB and 69 KB) and
-  re-encoding them saves almost nothing, so they are left as they are.
+  The black version, `img/eye-flash-dark.png`, and the two superseded
+  exports `img/eye-flash.jpg` and `img/texture.jpg` were deleted once
+  nothing referenced them. They are all in git history:
+  `git show 846de0e:img/eye-flash-dark.png > img/eye-flash-dark.png`
+  brings the black ink back if the design is ever wanted on a light
+  background. Note that one is Luke's artwork in a third ink rather than
+  a superseded export, so restore it rather than redrawing it.
 - The home page hero sits on `img/hero-collage.jpg`, 24 pieces from
   `img/tattoos/` in a 12x2 grid, desaturated and darkened. It replaced
   `img/texture.jpg`, which is now unused. White text sits on it, so the
@@ -179,6 +183,10 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   through all 54. Modified clicks (ctrl, cmd, shift) are left alone so
   "open in new tab" still works. If you add a photo to the grid, wrap it
   the same way or it will not open.
+  Because the tiles only load a 400w or 800w file, the master is
+  prefetched on hover, touchstart and focus, so the click does not wait on
+  a download the tile used to have cached. Each master is fetched at most
+  once, and nothing is prefetched until someone shows intent.
 - External links (Venue.ink, Instagram, the map) open in a new tab and
   carry `rel="noopener"`. Internal links do not. Keep that split.
 - The portfolio lives at `/gallery/`. It was at `/tattoos/`, and
