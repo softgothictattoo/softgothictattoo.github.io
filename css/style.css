@@ -96,7 +96,11 @@ strong { font-weight: 600; }
 .brand img { width: 52px; height: 52px; }
 .brand span { font-family: var(--display); font-size: 1.6rem; line-height: 1; }
 .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(0.8rem, 2vw, 1.6rem); flex-wrap: wrap; justify-content: flex-end; }
-.site-nav a { color: var(--bone); text-decoration: none; font-size: 1.05rem; padding: 0.3em 0; border-bottom: 2px solid transparent; }
+/* 1.05em, matching .btn, not 1.05rem: rem is against the 16px root while the
+   buttons scale with the body's fluid size, so the same number in different
+   units left the nav five pixels smaller and the gap widened with the
+   viewport. */
+.site-nav a { color: var(--bone); text-decoration: none; font-size: 1.05em; padding: 0.3em 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover, .site-nav a[aria-current="page"] { border-bottom-color: var(--oxblood); color: var(--bone); }
 @media (max-width: 40rem) {
   .site-header .wrap { flex-direction: column; align-items: flex-start; }
