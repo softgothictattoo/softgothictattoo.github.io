@@ -219,6 +219,15 @@ strong { font-weight: 600; }
 /* ---------- Two-column info ---------- */
 .cols { display: grid; gap: 2rem; grid-template-columns: 1fr; }
 @media (min-width: 52rem) { .cols { grid-template-columns: 1fr 1fr; } }
+/* "Where to find me" lines up with the rightmost photo above it. Same three
+   tracks and same gap as .grid, with the first column spanning two, so the
+   edges are computed from the identical track maths rather than guessed at
+   with a percentage. Scoped to this one section: .cols also lays out the
+   footer on every page and the studio page. */
+@media (min-width: 52rem) {
+  .cols-aside { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .cols-aside > :first-child { grid-column: span 2; }
+}
 
 .map { aspect-ratio: 4 / 3; width: 100%; border: 0; filter: grayscale(1) contrast(1.1); }
 .address { font-style: normal; font-size: 1.1em; }
