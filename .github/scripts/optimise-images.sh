@@ -118,27 +118,32 @@ while IFS= read -r -d '' f; do
   changed=$(( changed + 1 ))
   printf '  %s -> %s  %s KB -> %s KB  (%s)\n' \
     "$f" "$target" "$(( size_before / 1024 ))" "$(( size_after / 1024 ))" "${reasons% }"
-done < <(find "$DIR" -type f ! -name "*-400.*" -print0 | sort -z)
+done < <(find "$DIR" -type f ! -name "*-400.*" ! -name "*-800.*" -print0 | sort -z)
 
-# A phone draws a gallery tile about 170px wide, so the full-size file is
-# several times larger than it can use. Every photo gets a 400px companion for
-# srcset. Generated here rather than by hand so a newly uploaded photo cannot
-# leave the gallery pointing at a variant that does not exist.
+# Companions for srcset. A 2x phone can only use about 340px, so the full file
+# is wasted there; a desktop wants the full file because the gallery is a
+# showcase. 800 covers 3x phones and tablets in between.
+VARIANT_WIDTHS=${VARIANT_WIDTHS:-"400 800"}
 variants=0
 while IFS= read -r -d '' f; do
   [[ $(file -b --mime-type "$f") == image/* ]] || continue
-  small="${f%.*}-400.${f##*.}"
-  # Only rebuild when missing or older than its source, so reruns are cheap.
-  if [[ ! -f $small || $f -nt $small ]]; then
-    # Resize by WIDTH, not into a 400x400 box: srcset "w" descriptors are
-    # widths, and a portrait photo fitted into that box is only 300px wide,
-    # which would make the browser pick it for slots it cannot fill.
-    convert "$f" -resize "400x>" -profile "$SRGB" -interlace Plane \
-            -sampling-factor 4:2:0 -quality 80 -strip "$small"
-    chmod 644 "$small"
-    variants=$(( variants + 1 ))
-  fi
-done < <(find "$DIR" -type f ! -name "*-400.*" -print0 | sort -z)
+  for vw in $VARIANT_WIDTHS; do
+    small="${f%.*}-${vw}.${f##*.}"
+    # Never upscale: a master narrower than the variant would gain nothing.
+    src_w=$(identify -format '%w' "$f" 2>/dev/null || echo 0)
+    (( src_w > vw )) || continue
+    # Only rebuild when missing or older than its source, so reruns are cheap.
+    if [[ ! -f $small || $f -nt $small ]]; then
+      # Resize by WIDTH, not into a box: srcset "w" descriptors are widths, and
+      # a portrait photo fitted into a box is narrower than its label claims,
+      # which makes the browser pick it for slots it cannot fill.
+      convert "$f" -resize "${vw}x>" -profile "$SRGB" -interlace Plane \
+              -sampling-factor 4:2:0 -quality 82 -strip "$small"
+      chmod 644 "$small"
+      variants=$(( variants + 1 ))
+    fi
+  done
+done < <(find "$DIR" -type f ! -name "*-400.*" ! -name "*-800.*" -print0 | sort -z)
 (( variants )) && echo "Built $variants small variant(s) for srcset."
 
 if (( ${#broken[@]} )); then

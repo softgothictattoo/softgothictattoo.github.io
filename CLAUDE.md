@@ -86,17 +86,24 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
     copy the site uses.
 - Photos in `img/tattoos/` are optimised automatically once they land on
   `main` — see "Images" above. Nothing needs doing by hand.
-- Every photo in `img/tattoos/` also has a `-400` companion, built by the
-  same script, and the gallery and home page reference both through
-  `srcset`. A phone draws a tile about 170px wide, so the full-size file
-  was roughly four times larger than it could use: the gallery went from
-  13.2 MB to 1.5 MB on a phone. The `w` descriptors are the files' real
-  widths, read per image, not assumed. That matters: the variants are
-  resized by width, not fitted into a 400x400 box, because a portrait
-  photo fitted into that box is only 300px wide and a `400w` label on it
-  makes the browser choose it for slots it cannot fill. If you add an
-  `<img>` from `img/tattoos/` to a page, give it the same `srcset` and
-  `sizes`.
+- Every photo in `img/tattoos/` also has `-400` and `-800` companions,
+  built by the same script, and the gallery and home page offer all three
+  through `srcset`. The `sizes` slot is deliberately not the tile's real
+  width: it declares 1200px above 52rem so that any desktop or large
+  screen takes the master. The gallery is a showcase and the full file is
+  the point there; only the phone branch, 45vw, is allowed to take a
+  variant, because a 2x phone cannot resolve more than about 340px in a
+  170px tile. All 54 loaded: 1.6 MB on a 2x phone, 5.3 MB on a 3x phone,
+  13.2 MB on a desktop.
+  The `w` descriptors are each file's real width, read per image, not
+  assumed, and the variants are resized by width rather than fitted into
+  a box. A portrait photo fitted into a 400x400 box is only 300px wide,
+  and a `400w` label on it makes the browser pick it for slots it cannot
+  fill. If you add an `<img>` from `img/tattoos/` to a page, give it the
+  same `srcset` and `sizes`.
+  The masters are capped at 1600px on the long edge by the optimise
+  script. The camera originals are larger and remain in git history if a
+  full-size view is ever wanted.
 - Every page's background is `img/bg-pattern.jpg`, Luke's bird-and-leaf
   tile, set on `html` over the `--parchment` colour. The tile is seamless
   and its light areas are exactly `#e5e4c6`, so the colour underneath
