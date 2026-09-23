@@ -59,14 +59,37 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   against that going unnoticed.
 - **SEO**: every page carries a canonical URL, OG tags and JSON-LD. When you
   add a page, add it to `sitemap.xml` too and bump `lastmod`.
+  `sitemap.xml` also carries `<image:image>` entries for all 60 tattoo
+  photos on `/` and `/gallery/`, under the Google image sitemap namespace.
+  Only `<image:loc>` is listed: Google deprecated `image:caption`,
+  `image:title`, `image:geo_location` and `image:license`. Regenerate the
+  file if you add or remove photos from either page, and keep the page
+  `<loc>` list and the image list in step.
+  The gallery `<title>` is "Gallery | Blackwork Tattoos in Bristol | Soft
+  Gothic Tattoo", 59 characters, which keeps it under the ~60 where Google
+  truncates. Luke asked for this page to be called Gallery, so "Gallery"
+  stays the first word; the keywords go after it.
 
 ## Current state / known work
 
 - `gallery/index.html` is one flat gallery of 54 photos, with no
-  Custom/Flash/Healed split and no captions. Luke chose the first six
-  (swordneck, skull2, panther, dag, angel, horses1); the rest follow in
-  descending file size. The alt text was written from the photographs and
-  should be corrected wherever it misreads a piece.
+  Custom/Flash/Healed split. Luke chose the first six (swordneck, skull2,
+  panther, dag, angel, horses1); the rest follow in descending file size.
+  The alt text was written from the photographs and should be corrected
+  wherever it misreads a piece. Known suspects, flagged but not yet ruled
+  on by Luke: `clover.jpg` says four-leaf where the photo shows three
+  lobes; `boiler.jpg` says bell where it looks like a dark vessel;
+  `skull2.jpg` and `horses1.jpg` name placements the photographs seem to
+  contradict; `joey.jpg` cites letters "XO" that are not visible.
+  Every photo has a `<figcaption>`: a short label, subject first,
+  placement where the photograph shows it plainly. Each one says "tattoo",
+  "tattoos" or "tattooed" - Luke asked for that, and it is also what makes
+  the page read as tattoo work to a search engine. Keep that if you edit
+  them, and keep them short: they sit inside `.grid figure`, which has
+  `overflow: hidden` for the hover zoom, so a caption long enough to wrap
+  to three lines on a phone risks being clipped. Check at 360px after any
+  rewrite. Alt text stays fuller and separate - a caption is read by
+  everyone, alt by people who cannot see the image.
 - `img/dagger-flipped.png` is a mirrored copy of `img/dagger.png`, used
   for the divider above "Recent work" so the two rules on the home
   page point opposite ways. It is a real flipped file rather than a CSS
