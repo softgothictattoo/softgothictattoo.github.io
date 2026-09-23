@@ -115,12 +115,17 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
 - The hero artwork is `img/eye-flash-light.png`: the eye design in white
   ink on transparency, so it sits straight on the dark hero with no
   mount. Luke supplied the same design in three inks, cream, white and
-  black; white is the one on the site, black (`img/IMG_7660.PNG`) is
+  black; white is the one on the site, black (`img/eye-flash-dark.png`) is
   still unused. `.hero-art img` therefore sets `background: none; border: 0`.
   It is a 64-colour palette PNG, which for two-tone artwork is a tenth
   the size of truecolour with no visible loss, 12.4 MB down to 94 KB.
+  `img/eye-flash-dark.png` was given the same treatment (it arrived as
+  `IMG_7660.PNG`, 9933px square and 8.3 MB): resized to 1400px and
+  quantised to 64 colours with its transparency kept, 66 KB. Redo it with
+  `convert <source> -resize 1400x1400 -colors 64 -strip PNG8:<dest>`.
   `img/eye-flash.jpg`, the black-on-white version it replaced, is now
-  unused, as is `img/texture.jpg`.
+  unused, as is `img/texture.jpg`. Both are small (272 KB and 69 KB) and
+  re-encoding them saves almost nothing, so they are left as they are.
 - The home page hero sits on `img/hero-collage.jpg`, 24 pieces from
   `img/tattoos/` in a 12x2 grid, desaturated and darkened. It replaced
   `img/texture.jpg`, which is now unused. White text sits on it, so the
@@ -136,6 +141,17 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   `.portrait img` does the crop with `border-radius: 50%`. The source was
   also shaved slightly before flattening, so the circle's soft edge falls
   outside the CSS circle; without that a pale fringe rings the portrait.
+- The gallery has click-to-enlarge. Each photo is wrapped in a plain
+  `<a class="zoom">` pointing at its full-size file, so it still opens the
+  photograph with JavaScript off; an inline script at the foot of
+  `gallery/index.html` intercepts the click and shows the file in a native
+  `<dialog>` instead, which brings the focus trap, the backdrop and
+  Escape-to-close with it. Arrow keys and the two arrow buttons step
+  through all 54. Modified clicks (ctrl, cmd, shift) are left alone so
+  "open in new tab" still works. If you add a photo to the grid, wrap it
+  the same way or it will not open.
+- External links (Venue.ink, Instagram, the map) open in a new tab and
+  carry `rel="noopener"`. Internal links do not. Keep that split.
 - The portfolio lives at `/gallery/`. It was at `/tattoos/`, and
   `tattoos/index.html` is now a small stub that redirects there: a meta
   refresh plus a canonical, since GitHub Pages cannot serve a 301. It is
