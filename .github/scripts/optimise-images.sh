@@ -16,7 +16,7 @@
 set -euo pipefail
 
 DIR=${DIR:-img/tattoos}
-MAX_EDGE=${MAX_EDGE:-1600}
+MAX_EDGE=${MAX_EDGE:-1200}
 # 74, not the 82 this started at. The masters were re-encoded from the camera
 # originals at 74 to cut the gallery payload by a fifth; measured against the
 # uncompressed original, a single encode at 74 loses about 1 dB of PSNR
@@ -130,11 +130,14 @@ done < <(find "$DIR" -type f ! -name "*-400.*" ! -name "*-800.*" -print0 | sort 
 # is wasted there; a desktop wants the full file because the gallery is a
 # showcase. 800 covers 3x phones and tablets in between.
 VARIANT_WIDTHS=${VARIANT_WIDTHS:-"400 800"}
-# Deliberately above QUALITY: a variant is encoded from the master, which is
-# already a JPEG, so this is a second generation and a low number here would
-# compound the master's loss rather than sit alongside it. Downscaling hides
-# artefacts anyway, and the variants are a small part of the payload.
-VARIANT_QUALITY=${VARIANT_QUALITY:-82}
+# Same number as QUALITY. A variant is a second generation - it is encoded from
+# the master, which is already a JPEG - but that turns out to cost almost
+# nothing at these sizes: building a 400px variant from the camera original
+# instead of from the master gains 0.15 dB, because downscaling to a quarter of
+# the width averages the master's artefacts away before they are re-encoded.
+# So the variants can take the same quality as the masters, and reruns stay
+# reproducible from the master alone.
+VARIANT_QUALITY=${VARIANT_QUALITY:-74}
 variants=0
 while IFS= read -r -d '' f; do
   [[ $(file -b --mime-type "$f") == image/* ]] || continue
