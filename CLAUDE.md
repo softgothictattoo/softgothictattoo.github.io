@@ -50,11 +50,21 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   `about/` section it heads, and the studio page, where it describes the
   room. It remains the spirit of the site - do not re-add it to a third
   page without asking.
+- **Hovering a link on a dark surface.** The global rule is
+  `a:hover { color: var(--ink) }`, which is right on parchment and wrong
+  anywhere dark - it paints the link black on black. The nav always
+  overrode it; the brand, the hero and the footer did not, so hovering the
+  wordmark made it vanish. The brand now goes `--oxblood-bright`; the hero
+  and footer links stay `--bone` and thicken their underline. If you add a
+  link to any dark surface, give it a hover rule or it will disappear.
+- **`--oxblood-bright` (#c00000)** is `--oxblood` lightened for text on
+  `--ink`, and is only for that. `--oxblood` itself measures 1.40:1 on
+  black, no more readable than the black it would replace; the lighter red
+  is 3.24:1, which clears the 3:1 large text needs. It is not enough for
+  body-size text, which is why the footer keeps white on hover.
 - **Selected text** is `--oxblood` with `--bone` on top, set once as
-  `::selection` in `css/style.css`. Without it the browser's own highlight
-  forces the text near-black, which vanishes against the black header bar.
-  White on `#560000` is about 14.9:1, and because the rule paints its own
-  background it stays legible on the parchment pages too.
+  `::selection` in `css/style.css`. White on `#560000` is about 14.9:1.
+  This is separate from hover - it is what a drag-select paints.
 
 - **CSS**: all design tokens are custom properties on `:root` in
   `css/style.css` — `--ink`, `--parchment`, `--oxblood`, `--bone`, plus

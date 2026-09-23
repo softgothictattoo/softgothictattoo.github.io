@@ -28,6 +28,10 @@
   --parchment-dark: #dad9bd;
   --parchment-deep: #c9c8aa;
   --oxblood: #560000;
+  /* The same red lightened for dark surfaces. --oxblood on the black header
+     is 1.40:1, no more readable than the black it replaces; this is 3.24:1,
+     which clears the 3:1 that large text needs. Only for text on --ink. */
+  --oxblood-bright: #c00000;
   --bone: #ffffff;
 
   --display: "Grenze Gotisch", "UnifrakturCook", serif;
@@ -110,6 +114,16 @@ strong { font-weight: 600; }
   .site-nav a { padding: 0.62em 0; }
   .site-nav ul { justify-content: flex-start; }
 }
+
+/* The global rule a:hover { color: var(--ink) } is right on parchment and
+   wrong on every dark surface, where it paints the link black on black. The
+   nav already overrides it; the brand, the hero and the footer did not, so
+   hovering them made the text disappear. The brand goes red, as asked. The
+   other two stay bone and thicken their underline instead: they are body
+   size, and a red readable at that size against black has to be bright
+   enough to fight the rest of the palette. */
+.brand:hover span { color: var(--oxblood-bright); }
+.hero a:hover, .site-footer a:hover { color: var(--bone); text-decoration-thickness: 2px; }
 
 /* ---------- Hero ---------- */
 .hero {
