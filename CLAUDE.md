@@ -45,8 +45,11 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   "realise". Prices in £.
 - **Tone**: plain, warm, unfussy, lowercase branding ("soft gothic tattoo").
   Not spooky-cliché, not salesy. "Everyone is welcome here" was removed from
-  the footer at Luke's request; it still opens the home page and heads a
-  section on `about/`, and remains the spirit of the site.
+  the footer, then from the gallery introduction, then from the home page,
+  each at Luke's request. It now lives in two places he chose: the
+  `about/` section it heads, and the studio page, where it describes the
+  room. It remains the spirit of the site - do not re-add it to a third
+  page without asking.
 - **CSS**: all design tokens are custom properties on `:root` in
   `css/style.css` — `--ink`, `--parchment`, `--oxblood`, `--bone`, plus
   `--display` / `--body` for the two typefaces. Use the tokens, don't hardcode
