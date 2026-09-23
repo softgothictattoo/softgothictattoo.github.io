@@ -260,6 +260,12 @@ strong { font-weight: 600; }
 .site-footer small { display: block; margin-top: 2rem; opacity: 0.7; }
 .footer-brand { font-family: var(--display); font-size: 2rem; margin-bottom: 0.4em; }
 
+/* Selected text. Without this the browser's own highlight forces the text
+   almost black, which disappears against the black header bar. Oxblood works
+   on both surfaces: white on #560000 measures about 14.9:1, and the same red
+   reads fine over parchment on the rest of the site. */
+::selection { background: var(--oxblood); color: var(--bone); }
+
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------- Click to enlarge ---------- */

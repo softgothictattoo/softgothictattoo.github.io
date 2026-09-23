@@ -50,6 +50,12 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   `about/` section it heads, and the studio page, where it describes the
   room. It remains the spirit of the site - do not re-add it to a third
   page without asking.
+- **Selected text** is `--oxblood` with `--bone` on top, set once as
+  `::selection` in `css/style.css`. Without it the browser's own highlight
+  forces the text near-black, which vanishes against the black header bar.
+  White on `#560000` is about 14.9:1, and because the rule paints its own
+  background it stays legible on the parchment pages too.
+
 - **CSS**: all design tokens are custom properties on `:root` in
   `css/style.css` — `--ink`, `--parchment`, `--oxblood`, `--bone`, plus
   `--display` / `--body` for the two typefaces. Use the tokens, don't hardcode
