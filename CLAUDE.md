@@ -3,7 +3,19 @@
 Static site for Luke (Soft Gothic Tattoo), an illustrative blackwork tattoo
 artist working from Studio Trinket, 34 St Nicholas Street, Bristol BS1 1TG.
 
-- Live at <https://softgothictattoo.co.uk> (GitHub Pages, served from `main`)
+- Live at <https://softgothictattoo.github.io> (GitHub Pages, served from `main`)
+
+  **The site is not on a custom domain.** Every canonical, `og:url`,
+  `sitemap.xml` entry, `robots.txt` line and JSON-LD `url` used to say
+  `https://softgothictattoo.co.uk`, a domain Luke does not own and which
+  has no DNS record at all. Google would have crawled the real pages, been
+  told by their canonicals that the authoritative copy lived at an address
+  that does not resolve, and had nowhere to index. All 98 references now
+  point at `softgothictattoo.github.io`.
+  If a custom domain is bought later, three things move together: a `CNAME`
+  file at the repo root holding the bare domain, the DNS records, and every
+  absolute URL in the site. Keep them in step - a canonical pointing
+  anywhere the site is not actually served is worse than no canonical.
 - Booking goes through Venue.ink; Instagram is `@softgothictattoo`
 
 ## How the site is built
