@@ -17,7 +17,13 @@ set -euo pipefail
 
 DIR=${DIR:-img/tattoos}
 MAX_EDGE=${MAX_EDGE:-1600}
-QUALITY=${QUALITY:-82}
+# 74, not the 82 this started at. The masters were re-encoded from the camera
+# originals at 74 to cut the gallery payload by a fifth; measured against the
+# uncompressed original, a single encode at 74 loses about 1 dB of PSNR
+# against 82, where recompressing an existing 82 file down to the same size
+# loses about 4.5. New uploads arrive as camera originals, so they get that
+# same single-generation encode.
+QUALITY=${QUALITY:-74}
 SRGB=${SRGB:-/usr/share/color/icc/sRGB.icc}
 
 check_only=0
@@ -124,6 +130,11 @@ done < <(find "$DIR" -type f ! -name "*-400.*" ! -name "*-800.*" -print0 | sort 
 # is wasted there; a desktop wants the full file because the gallery is a
 # showcase. 800 covers 3x phones and tablets in between.
 VARIANT_WIDTHS=${VARIANT_WIDTHS:-"400 800"}
+# Deliberately above QUALITY: a variant is encoded from the master, which is
+# already a JPEG, so this is a second generation and a low number here would
+# compound the master's loss rather than sit alongside it. Downscaling hides
+# artefacts anyway, and the variants are a small part of the payload.
+VARIANT_QUALITY=${VARIANT_QUALITY:-82}
 variants=0
 while IFS= read -r -d '' f; do
   [[ $(file -b --mime-type "$f") == image/* ]] || continue
@@ -138,7 +149,7 @@ while IFS= read -r -d '' f; do
       # a portrait photo fitted into a box is narrower than its label claims,
       # which makes the browser pick it for slots it cannot fill.
       convert "$f" -resize "${vw}x>" -profile "$SRGB" -interlace Plane \
-              -sampling-factor 4:2:0 -quality 82 -strip "$small"
+              -sampling-factor 4:2:0 -quality "$VARIANT_QUALITY" -strip "$small"
       chmod 644 "$small"
       variants=$(( variants + 1 ))
     fi

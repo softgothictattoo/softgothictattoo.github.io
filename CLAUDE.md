@@ -93,8 +93,8 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   screen takes the master. The gallery is a showcase and the full file is
   the point there; only the phone branch, 45vw, is allowed to take a
   variant, because a 2x phone cannot resolve more than about 340px in a
-  170px tile. All 54 loaded: 1.6 MB on a 2x phone, 5.3 MB on a 3x phone,
-  13.2 MB on a desktop.
+  170px tile. All 54 loaded: 1.55 MB on a 2x phone, 5.3 MB on a 3x phone,
+  10.6 MB on a desktop.
   The `w` descriptors are each file's real width, read per image, not
   assumed, and the variants are resized by width rather than fitted into
   a box. A portrait photo fitted into a 400x400 box is only 300px wide,
@@ -104,6 +104,22 @@ subfolders link with `../` (e.g. `../css/style.css`); only the favicon links in
   The masters are capped at 1600px on the long edge by the optimise
   script. The camera originals are larger and remain in git history if a
   full-size view is ever wanted.
+  The masters are JPEG quality 74, down from the 82 they started at, which
+  took the desktop payload from 13.2 MB to 10.6 MB. They were not
+  recompressed to get there: each one was re-encoded in a single pass from
+  its camera original, recovered from git history. That distinction is the
+  whole point. Measured against the uncompressed original, a single encode
+  at 74 costs about 1 dB of PSNR against 82, where squeezing an existing 82
+  file down to the same size costs about 4.5 dB and shows as muddy
+  stippling on dotwork. If the masters ever need shrinking again, go back
+  to the originals rather than recompressing what is in the tree. The six
+  `.webp` masters were left alone: they arrived as WebP, so there is no
+  original behind them, and they are only 0.6 MB between them.
+  The `-400` and `-800` variants stay at quality 82 on purpose. They are
+  encoded from the master, so they are already a second generation, and
+  dropping them too would compound the master's loss rather than sit
+  alongside it. Taking them to 74 as well would save about 310 KB on a
+  phone, which has not been judged worth it.
 - Every page's background is `img/bg-pattern.jpg`, Luke's bird-and-leaf
   tile, set on `html` over the `--parchment` colour. The tile is seamless
   and its light areas are exactly `#e5e4c6`, so the colour underneath
